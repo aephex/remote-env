@@ -93,5 +93,4 @@ function si() {
     printf "%9s %s\n" "CPU:" "$(awk -F: '/model name/{print $2}' </proc/cpuinfo | head -1)"
     printf "%9s %s\n" "MEMORY:" " $(free -gh | awk '/Mem/{print $3"/"$2}')"
     printf "%9s %s\n" "UPTIME:" " $(uptime -p)"
-    printf "\n"
 }
