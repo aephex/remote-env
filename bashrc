@@ -1,5 +1,4 @@
-# Exit if not interactive
-[[ $- != *i* ]] && return
+[[ $- != *i* ]] && return # Exit if not interactive
 
 tbold="\033[1m"
 tnorm="\033[0m"
@@ -7,13 +6,16 @@ tnorm="\033[0m"
 PS1="${tbold}\u@\h \w > ${tnorm}" # simple prompt
 PROMPT_COMMAND="echo" # new line after commands
 
+# Add completions when host supports them
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
+# History
 HISTTIMEFORMAT="%F-%T%z "
 HISTCONTROL=ignoredups
 HISTSIZE=10000
 HISTFILESIZE=5000
 
+# Enable these shell options
 shopt -s cdspell
 shopt -s checkjobs
 shopt -s checkwinsize
@@ -33,6 +35,7 @@ shopt -s progcomp
 shopt -s promptvars
 shopt -s sourcepath
 
+# Disable these shell options
 shopt -u assoc_expand_once
 shopt -u autocd
 shopt -u cdable_vars
@@ -69,6 +72,7 @@ shopt -u restricted_shell
 shopt -u shift_verbose
 shopt -u xpg_echo
 
+# Aliases
 alias cp='cp -i' # Confirm before overwrite
 alias mv='mv -i' # Confirm before overwrite
 alias ls='ls -F --group-directories-first --color=auto'
@@ -77,6 +81,7 @@ alias mkdir='mkdir -p' # Make intermediate dirs if they don't exist
 alias dps='docker ps --format "table {{.ID}}\t{{.Status}}\t{{.Names}}"'
 alias dfx='df -h -x overlay -x tmpfs -x devtmpfs | sed "/\/boot\//d"' # Hide some filesystems
 
+# Functions
 function hg() {
     history | grep -i "$1"
 }
